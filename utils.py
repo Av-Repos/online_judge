@@ -17,6 +17,9 @@ MAX_RADIO = 4
 #Paths a las carpetas donde se guardan las soluciones y las imágenes generadas
 FOLDER_HEATMAP = "./data/images/"
 
+#Path del "semáforo" para evitar mutliples escrituras simultaneas
+LOCK_FILE = "./mutex.lock"
+
 #Variables que controlan la distribución de los heatmaps en la imágenes generadas
 HEAT_ROWS = 2
 HEAT_COLS = 2

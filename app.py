@@ -4,6 +4,8 @@ from io import StringIO
 import datetime
 import os
 from utils import *
+from mutex import *
+import time
 
 # Cargar leaderboard existente
 def load_leaderboard():
@@ -69,6 +71,8 @@ def heatmap_plot(heatmap, team_name):
 
     fig.savefig(FOLDER_HEATMAP+f"{team_name}.png")
     plt.close(fig)   # 👈 CERRAR LA FIGURA PARA EVITAR QUE OTRO PROCESO PARALELO LA SOBRESCRIBA!
+
+mutex = FileMutex()
 
 st.set_page_config(layout="wide")
 
@@ -156,13 +160,25 @@ with col_center:
     st.session_state.file = st.file_uploader("Archivo CSV", type="csv", key="file_uploader")
 
     # Botón de evaluación
-    if st.button("Subir y evaluar"):
+    if st.button("Subir y evaluar") or ("button_clicked" in st.session_state and st.session_state.button_clicked):
         if st.session_state.team_name and st.session_state.file:
             content = StringIO(st.session_state.file.getvalue().decode("utf-8"))
 
             # Ejecutar en segundo plano
             st.info("🕐 Procesando archivo...")
-            result = update(content, st.session_state.team_name)
+
+            #Comprueba si alguien está usando los recursos compartidos. En caso afirmativo, recarga la página
+            if not mutex.reserve():
+                st.session_state.button_clicked = True
+                st.rerun()
+            else:
+                st.session_state.button_clicked = False
+
+            # Realiza el update y libera los recursos compartidos
+            try:
+                result = update(content, st.session_state.team_name)
+            finally:
+                mutex.release()
 
             if isinstance(result, str) and result.startswith("❌"):
                 st.error(result)
