@@ -193,6 +193,7 @@ with col_center:
     if st.session_state.uploaded:
             st.success(f"""✅ ¡Evaluación completada!
 🎯 Puntuación: {st.session_state.points} puntos""")
+            st.session_state.uploaded = False
 
     # Mostrar leaderboard
     st.subheader("🏁 Leaderboard actual")
