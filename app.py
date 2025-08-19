@@ -1,14 +1,9 @@
 import streamlit as st
 import pandas as pd
-import csv
 from io import StringIO
 import datetime
 import os
 from utils import *
-import concurrent.futures
-from io import StringIO
-
-executor = concurrent.futures.ThreadPoolExecutor()
 
 # Cargar leaderboard existente
 def load_leaderboard():
