@@ -3,5 +3,3 @@ numpy
 pandas
 matplotlib
 seaborn
-mysql
-mysqlclient
