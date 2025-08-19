@@ -194,13 +194,6 @@ with col_center:
             st.success(f"""✅ ¡Evaluación completada!
 🎯 Puntuación: {st.session_state.points} puntos""")
 
-        if st.button("Subir otro archivo"):
-            st.session_state.uploaded = False
-            st.session_state.points = None
-            st.session_state.file = None
-            st.session_state.team_name = ""
-            st.rerun()
-
     # Mostrar leaderboard
     st.subheader("🏁 Leaderboard actual")
     df = load_leaderboard()
