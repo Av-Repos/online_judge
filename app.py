@@ -189,8 +189,8 @@ with col_center:
         else:
             st.warning("⚠️ Asegúrate de haber escrito tu nombre y seleccionado un archivo.")
 
-        # Mostrar mensaje después de la recarga
-        if st.session_state.uploaded:
+    # Mostrar mensaje después de la recarga
+    if st.session_state.uploaded:
             st.success(f"""✅ ¡Evaluación completada!
 🎯 Puntuación: {st.session_state.points} puntos""")
 
