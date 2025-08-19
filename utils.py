@@ -7,9 +7,6 @@ import sys
 PATH_INSTANCE = "./data/students.csv"
 PATH_LEADERBOARD = "./data/leaderboard.csv"
 
-#Paths a las carpetas donde se guardan las soluciones y las imágenes generadas
-FOLDER_SOLUTION = "./data/solutions/"
-
 #Dimensiones del problema (la cantidad de estudiantes será N_CLUSTERS*N_ROWS*N_SEATS)
 N_CLUSTERS = 4
 N_ROWS = 8
@@ -17,8 +14,7 @@ N_SEATS = 6
 #Máximo radio a considerar en las preferencias con respecto a otros estudiantes
 MAX_RADIO = 4
 
-
-FOLDER_TMP = "./tmp/"
+#Paths a las carpetas donde se guardan las soluciones y las imágenes generadas
 FOLDER_HEATMAP = "./data/images/"
 
 #Variables que controlan la distribución de los heatmaps en la imágenes generadas
